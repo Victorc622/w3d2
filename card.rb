@@ -1,34 +1,24 @@
 class Card
-  def initialize(face_value, face_up)
+  def initialize(face_value)
     @face_value = face_value
-    @face_up = face_up
+    @face_up = false
   end
 
-  def face_value
-    @face_value
-  end
-
-  def face_up
-    @face_up
-  end
+  attr_reader :face_up, :face_value
 
   def hide
-    return " "
+    @face_up = false
   end
 
   def reveal
-    @face_value
+    @face_up = true
+  end
+
+  def to_s
+    @face_up ? @face_value.to_s : " "
   end
   
-#   def display_card
-#     if self.face_up
-#         self.reveal
-#     else
-#         self.hide
-#     end
-#   end
-
-#   def ==(card2)
-#     @face_value == card2.face_value
-#   end
+  def ==(other_card)
+    @face_value == other_card.face_value
+  end
 end
