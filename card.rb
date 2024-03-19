@@ -5,6 +5,7 @@ class Card
   end
 
   attr_reader :face_up, :face_value
+  attr_writer :face_up
 
   def hide
     @face_up = false
