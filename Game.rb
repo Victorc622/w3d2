@@ -7,7 +7,9 @@ class Game
 
   def initialize(size)
     @board = Board.new(size)
-    @previous_guess = nil
+    @nil_card = Card.new(nil)
+    @previous_guess = @nil_card
+    @current_guess = nil
     @guessed_pos = []
     @size = size
   end
@@ -18,34 +20,37 @@ class Game
   while !@board.won?
     @board.render
     print "Enter the position for the card you want to flip"
-    pos = gets.chomp
-    arr = []
-    pos.each_char { |ele| arr << ele }
-  
-    make_guess(array)
+    pos = gets.chomp "0 0"
+    arr = pos.split(" ")
+    new_array = arr.map{|ele| ele.to_i}
+    make_guess(new_array)
   end
 end
 
   def make_guess(pos)
-    if @previous_guess == nil
+
+    if @previous_guess == @nil_card
         @guessed_pos = pos
-        @board.grid [pos].reveal
-        @previous_guess = @board.grid[pos]
+        @board[pos].reveal
+        @previous_guess = @board[pos]
 
         
     else
-      
-      @board.grid[pos].reveal
+   
+      @board[pos].reveal
 
       sleep (3)
 
+      @current_guess = @board[pos]
       
-      if @previous_guess.face_value != @board.grid[pos]
+      unless @previous_guess == @current_guess
+       
         @previous_guess.hide
-        @board.grid[pos].hide
+        @board[pos].hide
       end
 
     end
+    
     system("clear")
   end
 

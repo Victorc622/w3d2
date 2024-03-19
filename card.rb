@@ -20,6 +20,7 @@ class Card
   end
   
   def ==(other_card)
+ 
     @face_value == other_card.face_value
   end
 end

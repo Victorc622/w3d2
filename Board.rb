@@ -39,16 +39,16 @@ class Board
     end
 
     def render
-       i = 0 
+    #    i = 0 
     
-       while i < @grid.length
-        p i
-        print " "
-        i += 1
-       end
-       puts ""
+    #    while i < @grid.length
+    #     p i
+    #     print " "
+    #     i += 1
+    #    end
+    #    puts ""
         @grid.each_with_index do |row, i|
-            p i 
+            # p i 
             puts row.map {|card| card.my_to_s}.join (" ")
         end
     end
@@ -66,14 +66,14 @@ class Board
 
     def [](pos)
         row, col = pos
-        @grid[row, col]
+        @grid[row][col]
     end
 
   
 
     def []=(pos, val)
         row, col = pos
-        @grid [row, col] = val
+        @grid [row][col] = val
     end
 
 
