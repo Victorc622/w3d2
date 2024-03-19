@@ -1,5 +1,8 @@
-class Board
 require_relative "card.rb"
+require "byebug"
+
+class Board
+
 
     def initialize(size)
         @grid = Array.new(size) {Array.new(size)}
@@ -9,10 +12,21 @@ require_relative "card.rb"
 
     attr_reader :grid
 
-    # def make_cards(size)
-    #   arr = [:A, :A, :B, :B, :C, :C, :D, :D]
-    #     return arr[0...size * size]
-    # end
+    def make_cards(size)
+        
+        card_array = []
+        arr = [:A, :B, :C]
+
+        while card_array.length < size * size
+              
+                value = arr.shift
+                2.times {card_array <<Card.new(value)}
+            
+        end
+
+        return card_array
+
+    end
 
     def populate(cards)
         cards.shuffle!
@@ -33,6 +47,28 @@ require_relative "card.rb"
     def won?
       @grid.flatten.all? { |card| card.face_up}
     end
+
+
+    def reveal (pos)
+        card = self[pos]
+        card.reveal unless card.face_up
+        card.value 
+    end
+
+    def [](pos)
+        row, col = pos
+        @grid[row, col]
+    end
+
+  
+
+    def []=(pos, val)
+        row, col = pos
+        @grid [row, col] = val
+    end
+
+
+
 
 end
 
