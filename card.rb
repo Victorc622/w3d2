@@ -15,7 +15,7 @@ class Card
     @face_up = true
   end
 
-  def to_s
+  def my_to_s
     @face_up ? @face_value.to_s : " "
   end
   

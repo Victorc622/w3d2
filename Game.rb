@@ -1,6 +1,6 @@
 require_relative "card"
 require_relative "Board"
-
+require "byebug"
 
 class Game
     attr_reader :board
@@ -15,7 +15,7 @@ class Game
   def play
     cards = @board.make_cards(@size)
     @board.populate(cards)
-  while !board.won?
+  while !@board.won?
     @board.render
     print "Enter the position for the card you want to flip"
     pos = gets.chomp

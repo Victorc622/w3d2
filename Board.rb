@@ -39,8 +39,17 @@ class Board
     end
 
     def render
-        @grid.each do |row|
-            puts row.map {|card| card.to_s}.join (" ")
+       i = 0 
+    
+       while i < @grid.length
+        p i
+        print " "
+        i += 1
+       end
+       puts ""
+        @grid.each_with_index do |row, i|
+            p i 
+            puts row.map {|card| card.my_to_s}.join (" ")
         end
     end
 
