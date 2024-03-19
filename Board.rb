@@ -1,4 +1,5 @@
 class Board
+require_relative "card.rb"
 
     def initialize(size)
         @grid = Array.new(size) {Array.new(size)}
@@ -7,6 +8,11 @@ class Board
 
 
     attr_reader :grid
+
+    # def make_cards(size)
+    #   arr = [:A, :A, :B, :B, :C, :C, :D, :D]
+    #     return arr[0...size * size]
+    # end
 
     def populate(cards)
         cards.shuffle!
@@ -22,7 +28,10 @@ class Board
         @grid.each do |row|
             puts row.map {|card| card.to_s}.join (" ")
         end
+    end
 
+    def won?
+      @grid.flatten.all? { |card| card.face_up}
     end
 
 end
